@@ -1,0 +1,14 @@
+﻿modulo                         lineas cubiertas      %
+solicitudes/__init__.py             1      0     0%
+solicitudes/catalogos.py           62     60    97%
+solicitudes/cli.py                 10      0     0%
+solicitudes/errores.py             14     12    86%
+solicitudes/modelos.py             67     66    99%
+solicitudes/reloj.py               10      8    80%
+solicitudes/reporte.py             19     17    89%
+solicitudes/repositorio.py         63     57    90%
+solicitudes/servicio.py            37     35    95%
+solicitudes/validacion.py          39     33    85%
+----------------------------------------------------
+TOTAL                             322    288    89%
+Pruebas: 1 ejecutadas, 0 fallos, 0 errores
