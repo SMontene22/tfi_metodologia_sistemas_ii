@@ -10,5 +10,5 @@
 ## Registro de prompts
 | N.º | Fecha | Integrante | Prompt | Finalidad | Resultado |
 |---|---|---|---|---|---|
-| 1 | 26/10/2026 | `[nombre]` | "tenemos que resolver el tp integrador" (con la consigna adjunta) | Generar el caso de trabajo | Sistema base con tag `estado-inicial` |
+| 1 | 26/10/2026 | `Sergio Montenegro` | "tenemos que resolver el tp integrador" (con la consigna adjunta) | Generar el caso de trabajo | Sistema base con tag `estado-inicial` |
 | 2 | | | | | |
