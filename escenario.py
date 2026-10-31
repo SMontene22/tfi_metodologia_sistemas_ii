@@ -1,51 +1,65 @@
 """Escenario determinista usado como prueba de caracterizacion (golden master).
 
-Registra SOLO resultados observables (ids, estados, texto del reporte), de modo que
-el mismo escenario pueda ejecutarse contra la version inicial y la refactorizada.
+Version adaptada a la API refactorizada: ejecuta EXACTAMENTE los mismos pasos que la version
+inicial y registra solo resultados observables. La salida debe ser identica a
+docs/evidencias/salida_inicial.txt (capturada en el tag estado-inicial).
 """
-import contextlib
-import io
 import os
 from datetime import date
 
-import gestor
+from solicitudes.catalogos import Area, Estado, Prioridad, TipoSolicitud
+from solicitudes.errores import ErrorDeDominio, ValidacionError
+from solicitudes.modelos import DatosSolicitud, FiltroSolicitudes, Responsable
+from solicitudes.reloj import RelojFijo
+from solicitudes.repositorio import RepositorioJSON
+from solicitudes.servicio import ServicioSolicitudes
 
 HOY = date(2025, 6, 30)
-CODIGOS = {-1: "nombre", -2: "legajo", -3: "mail", -4: "tipo", -5: "descripcion", -6: "prioridad"}
 
-
-class _FechaFija(date):
-    @classmethod
-    def today(cls):
-        return HOY
-
-
-def _silencioso(funcion, *args, **kwargs):
-    with contextlib.redirect_stdout(io.StringIO()):
-        return funcion(*args, **kwargs)
+# Nombre de criterio del escenario -> (campo de FiltroSolicitudes, conversor del valor)
+_CRITERIOS = {
+    "estado": ("estado", Estado),
+    "tipo": ("tipo", TipoSolicitud),
+    "prio": ("prioridad", Prioridad),
+    "legajo": ("legajo", str),
+    "texto": ("texto", str),
+}
 
 
 def ejecutar(directorio):
-    gestor.ARCHIVO = os.path.join(directorio, "solicitudes.json")
-    gestor.date = _FechaFija
-    gestor.cargar()
+    ruta = os.path.join(directorio, "solicitudes.json")
+    servicio = ServicioSolicitudes(RepositorioJSON(ruta), RelojFijo(HOY))
     log = []
 
     def registrar(nom, leg, mail, t, desc, p=None, f=None):
-        r = _silencioso(gestor.reg, nom, leg, mail, t, desc, p, None, f)
-        res = "OK #%d" % r if r > 0 else "ERROR " + CODIGOS[r]
+        try:
+            res = "OK #%d" % servicio.registrar(DatosSolicitud(nom, leg, mail, t, desc, p, f)).id
+        except ValidacionError as error:
+            res = "ERROR " + error.campo
         log.append("REGISTRAR %s %s -> %s" % (nom, t, res))
 
     def asignar(i, resp, area):
-        ok = _silencioso(gestor.asig, i, resp, area)
-        log.append("ASIGNAR #%d %s/%s -> %s" % (i, resp, area, "OK" if ok else "RECHAZADO"))
+        try:
+            servicio.asignar_responsable(i, Responsable(resp, Area(area)))
+            res = "OK"
+        except ErrorDeDominio:
+            res = "RECHAZADO"
+        log.append("ASIGNAR #%d %s/%s -> %s" % (i, resp, area, res))
 
     def cambiar(i, estado):
-        ok = _silencioso(gestor.cambiar, i, estado)
-        log.append("CAMBIAR #%d %s -> %s" % (i, estado, "OK" if ok else "RECHAZADO"))
+        try:
+            servicio.cambiar_estado(i, Estado(estado))
+            res = "OK"
+        except ErrorDeDominio:
+            res = "RECHAZADO"
+        log.append("CAMBIAR #%d %s -> %s" % (i, estado, res))
 
     def buscar(campo, valor):
-        ids = [s["id"] for s in gestor.buscar(campo, valor)]
+        if campo in _CRITERIOS:
+            nombre, convertir = _CRITERIOS[campo]
+            ids = [s.id for s in servicio.buscar(FiltroSolicitudes(**{nombre: convertir(valor)}))]
+        else:  # criterio inexistente: la API tipada ya no permite expresarlo
+            ids = []
         log.append("BUSCAR %s=%s -> %s" % (campo, valor, ids))
 
     registrar("Ana Perez", "12345", "ana@mail.com", "CERTIFICADO", "Certificado de alumno regular", f="2025-06-20")
@@ -85,13 +99,10 @@ def ejecutar(directorio):
     buscar("texto", "ALGEBRA")
     buscar("color", "rojo")
 
-    buffer = io.StringIO()
-    with contextlib.redirect_stdout(buffer):
-        gestor.reporte()
-    log.append(buffer.getvalue().rstrip("\n"))
+    log.append(servicio.reporte())
 
-    gestor.cargar()
-    log.append("RECARGA -> %d solicitudes persistidas" % len(gestor.lista))
+    recargado = ServicioSolicitudes(RepositorioJSON(ruta), RelojFijo(HOY))
+    log.append("RECARGA -> %d solicitudes persistidas" % len(recargado.listar()))
     return "\n".join(log) + "\n"
 
 
