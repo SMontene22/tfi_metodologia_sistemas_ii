@@ -1,0 +1,10 @@
+Version: estado-inicial
+test_escenario_completo_coincide_con_version_inicial (test_caracterizacion.TestCaracterizacion.test_escenario_completo_coincide_con_version_inicial) ... C:\Users\poiu\AppData\Local\Temp\tmp1v3ia4od\inicial\escenario.py:93: ResourceWarning: unclosed file <_io.TextIOWrapper name='C:\\Users\\poiu\\AppData\\Local\\Temp\\tmp5daooxin\\solicitudes.json' mode='r' encoding='cp1252'>
+  gestor.cargar()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.028s
+
+OK
