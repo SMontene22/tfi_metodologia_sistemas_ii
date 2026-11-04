@@ -1,0 +1,31 @@
+Fecha de verificacion: 03/11/2026
+Python: 3.12.14
+Comando: python -m unittest discover -s tests -v
+test_escenario_completo_coincide_con_version_inicial (test_caracterizacion.TestCaracterizacion.test_escenario_completo_coincide_con_version_inicial) ... ok
+test_demo_registra_y_muestra_reporte (test_persistencia.TestPersistencia.test_demo_registra_y_muestra_reporte) ... ok
+test_error_de_escritura_informa_causa (test_persistencia.TestPersistencia.test_error_de_escritura_informa_causa) ... ok
+test_guarda_formato_inicial (test_persistencia.TestPersistencia.test_guarda_formato_inicial) ... ok
+test_json_invalido_informa_error_sin_sobrescribir (test_persistencia.TestPersistencia.test_json_invalido_informa_error_sin_sobrescribir) ... ok
+test_recarga_conserva_datos_y_siguiente_id (test_persistencia.TestPersistencia.test_recarga_conserva_datos_y_siguiente_id) ... ok
+test_asignacion_respeta_area_del_tipo (test_servicio.TestServicio.test_asignacion_respeta_area_del_tipo) ... ok
+test_buscar_por_criterios_y_combinaciones (test_servicio.TestServicio.test_buscar_por_criterios_y_combinaciones) ... ok
+test_fecha_invalida_no_se_guarda (test_servicio.TestServicio.test_fecha_invalida_no_se_guarda) ... ok
+test_no_asigna_a_solicitudes_cerradas (test_servicio.TestServicio.test_no_asigna_a_solicitudes_cerradas) ... ok
+test_no_permite_iniciar_sin_responsable (test_servicio.TestServicio.test_no_permite_iniciar_sin_responsable) ... ok
+test_operaciones_sobre_id_inexistente (test_servicio.TestServicio.test_operaciones_sobre_id_inexistente) ... ok
+test_registrar_asigna_id_estado_y_prioridad (test_servicio.TestServicio.test_registrar_asigna_id_estado_y_prioridad) ... ok
+test_registrar_rechaza_datos_invalidos_sin_guardar (test_servicio.TestServicio.test_registrar_rechaza_datos_invalidos_sin_guardar) ... ok
+test_registrar_usa_fecha_del_reloj (test_servicio.TestServicio.test_registrar_usa_fecha_del_reloj) ... ok
+test_registrar_usa_prioridad_y_fecha_indicadas (test_servicio.TestServicio.test_registrar_usa_prioridad_y_fecha_indicadas) ... ok
+test_reporte_ordena_por_prioridad_fecha_e_id (test_servicio.TestServicio.test_reporte_ordena_por_prioridad_fecha_e_id) ... ok
+test_reporte_usa_el_reloj_inyectado (test_servicio.TestServicio.test_reporte_usa_el_reloj_inyectado) ... ok
+test_reporte_vacio (test_servicio.TestServicio.test_reporte_vacio) ... ok
+test_todos_los_tipos_tienen_regla (test_servicio.TestServicio.test_todos_los_tipos_tienen_regla) ... ok
+test_transiciones_permitidas_y_rechazadas (test_servicio.TestServicio.test_transiciones_permitidas_y_rechazadas) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 0.033s
+
+OK
+
+Codigo de salida: 0

@@ -1,5 +1,9 @@
 # Aplicación de SOLID y Clean Code
 
+Las medidas de tamaño corresponden al cierre de la etapa 5. Luego, la etapa 6 agregó
+las pruebas citadas aquí y el code review amplió `_cargar` para validar el JSON.
+La medición actual se conserva en `evidencias/metricas_etapas_6_7.txt`.
+
 ## SOLID
 
 | Principio | Problema en la versión inicial | Mejora aplicada | Evidencia |

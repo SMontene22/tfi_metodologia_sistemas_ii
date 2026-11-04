@@ -1,0 +1,9 @@
+Fecha: 03/11/2026
+Verificacion de tools/cobertura.py ante una prueba fallida.
+Metodo: reemplazar temporalmente unittest.discover por una suite con un fallo intencional.
+La sustitucion ocurre solo en memoria; no se modifica la suite del proyecto.
+Antes (903a65c): codigo de salida = 0
+Pruebas: 1 ejecutadas, 1 fallos, 0 errores
+Despues (cambios locales): codigo de salida = 1
+Pruebas: 1 ejecutadas, 1 fallos, 0 errores
+Resultado: ahora la herramienta informa el fallo al sistema operativo (codigo 1).

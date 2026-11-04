@@ -1,0 +1,19 @@
+Fecha de verificacion: 03/11/2026
+Python: 3.12.14
+Comando: python tools/cobertura.py
+modulo                         lineas cubiertas      %
+solicitudes/__init__.py             1      0     0%
+solicitudes/catalogos.py           61     60    98%
+solicitudes/cli.py                 10      9    90%
+solicitudes/errores.py             13     12    92%
+solicitudes/modelos.py             67     66    99%
+solicitudes/reloj.py               10      9    90%
+solicitudes/reporte.py             18     17    94%
+solicitudes/repositorio.py         67     66    99%
+solicitudes/servicio.py            36     35    97%
+solicitudes/validacion.py          38     36    95%
+----------------------------------------------------
+TOTAL                             321    310    97%
+Pruebas: 21 ejecutadas, 0 fallos, 0 errores
+
+Codigo de salida: 0

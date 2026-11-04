@@ -1,0 +1,11 @@
+Comparacion antes/despues
+Base: tag estado-inicial
+Version actual: 903a65c + cambios locales si los hay
+Fecha simulada del escenario: 2025-06-30
+Prueba de caracterizacion del tag inicial: OK
+Salida inicial reproducida igual a la referencia: OK
+Salida refactorizada igual a la inicial: OK
+Datos JSON finales iguales en ambas versiones: OK
+SHA-256 salida inicial (texto UTF-8 con saltos LF): d9c999fe9c74c799aa693ddcd5e4807d87938e9df666d914a3c1c62b372b24a9
+SHA-256 salida refactorizada (texto UTF-8 con saltos LF): d9c999fe9c74c799aa693ddcd5e4807d87938e9df666d914a3c1c62b372b24a9
+Solicitudes persistidas: 6

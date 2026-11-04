@@ -50,9 +50,14 @@ class RepositorioJSON(RepositorioMemoria):
             return
         try:
             with open(self._ruta, encoding="utf-8") as f:
-                for fila in json.load(f):
-                    s = _desde_fila(fila)
-                    self._items[s.id] = s
+                filas = json.load(f)
+            if not isinstance(filas, list):
+                raise ValueError("Se esperaba una lista de solicitudes")
+            for fila in filas:
+                if not isinstance(fila, dict):
+                    raise ValueError("Cada solicitud debe ser un objeto")
+                s = _desde_fila(fila)
+                self._items[s.id] = s
         except (OSError, ValueError, KeyError) as error:
             raise ErrorDePersistencia("No se pudo leer %s: %s" % (self._ruta, error)) from error
 

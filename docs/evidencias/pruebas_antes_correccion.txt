@@ -1,0 +1,67 @@
+test_escenario_completo_coincide_con_version_inicial (test_caracterizacion.TestCaracterizacion.test_escenario_completo_coincide_con_version_inicial) ... ok
+test_demo_registra_y_muestra_reporte (test_persistencia.TestPersistencia.test_demo_registra_y_muestra_reporte) ... ok
+test_error_de_escritura_informa_causa (test_persistencia.TestPersistencia.test_error_de_escritura_informa_causa) ... ok
+test_guarda_formato_inicial (test_persistencia.TestPersistencia.test_guarda_formato_inicial) ... ok
+test_json_invalido_informa_error_sin_sobrescribir (test_persistencia.TestPersistencia.test_json_invalido_informa_error_sin_sobrescribir) ... 
+  test_json_invalido_informa_error_sin_sobrescribir (test_persistencia.TestPersistencia.test_json_invalido_informa_error_sin_sobrescribir) (contenido='null') ... ERROR
+  test_json_invalido_informa_error_sin_sobrescribir (test_persistencia.TestPersistencia.test_json_invalido_informa_error_sin_sobrescribir) (contenido='{}') ... FAIL
+  test_json_invalido_informa_error_sin_sobrescribir (test_persistencia.TestPersistencia.test_json_invalido_informa_error_sin_sobrescribir) (contenido='[null]') ... ERROR
+test_recarga_conserva_datos_y_siguiente_id (test_persistencia.TestPersistencia.test_recarga_conserva_datos_y_siguiente_id) ... ok
+test_asignacion_respeta_area_del_tipo (test_servicio.TestServicio.test_asignacion_respeta_area_del_tipo) ... ok
+test_buscar_por_criterios_y_combinaciones (test_servicio.TestServicio.test_buscar_por_criterios_y_combinaciones) ... ok
+test_fecha_invalida_no_se_guarda (test_servicio.TestServicio.test_fecha_invalida_no_se_guarda) ... ok
+test_no_asigna_a_solicitudes_cerradas (test_servicio.TestServicio.test_no_asigna_a_solicitudes_cerradas) ... ok
+test_no_permite_iniciar_sin_responsable (test_servicio.TestServicio.test_no_permite_iniciar_sin_responsable) ... ok
+test_operaciones_sobre_id_inexistente (test_servicio.TestServicio.test_operaciones_sobre_id_inexistente) ... ok
+test_registrar_asigna_id_estado_y_prioridad (test_servicio.TestServicio.test_registrar_asigna_id_estado_y_prioridad) ... ok
+test_registrar_rechaza_datos_invalidos_sin_guardar (test_servicio.TestServicio.test_registrar_rechaza_datos_invalidos_sin_guardar) ... ok
+test_registrar_usa_fecha_del_reloj (test_servicio.TestServicio.test_registrar_usa_fecha_del_reloj) ... ok
+test_registrar_usa_prioridad_y_fecha_indicadas (test_servicio.TestServicio.test_registrar_usa_prioridad_y_fecha_indicadas) ... ok
+test_reporte_ordena_por_prioridad_fecha_e_id (test_servicio.TestServicio.test_reporte_ordena_por_prioridad_fecha_e_id) ... ok
+test_reporte_usa_el_reloj_inyectado (test_servicio.TestServicio.test_reporte_usa_el_reloj_inyectado) ... ok
+test_reporte_vacio (test_servicio.TestServicio.test_reporte_vacio) ... ok
+test_todos_los_tipos_tienen_regla (test_servicio.TestServicio.test_todos_los_tipos_tienen_regla) ... ok
+test_transiciones_permitidas_y_rechazadas (test_servicio.TestServicio.test_transiciones_permitidas_y_rechazadas) ... ok
+
+======================================================================
+ERROR: test_json_invalido_informa_error_sin_sobrescribir (test_persistencia.TestPersistencia.test_json_invalido_informa_error_sin_sobrescribir) (contenido='null')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Programming\UTN\Meto 2\tfi_metodologia_sistemas_ii\tests\test_persistencia.py", line 53, in test_json_invalido_informa_error_sin_sobrescribir
+    RepositorioJSON(self.ruta)
+  File "D:\Programming\UTN\Meto 2\tfi_metodologia_sistemas_ii\solicitudes\repositorio.py", line 42, in __init__
+    self._cargar()
+  File "D:\Programming\UTN\Meto 2\tfi_metodologia_sistemas_ii\solicitudes\repositorio.py", line 53, in _cargar
+    for fila in json.load(f):
+                ^^^^^^^^^^^^
+TypeError: 'NoneType' object is not iterable
+
+======================================================================
+ERROR: test_json_invalido_informa_error_sin_sobrescribir (test_persistencia.TestPersistencia.test_json_invalido_informa_error_sin_sobrescribir) (contenido='[null]')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Programming\UTN\Meto 2\tfi_metodologia_sistemas_ii\tests\test_persistencia.py", line 53, in test_json_invalido_informa_error_sin_sobrescribir
+    RepositorioJSON(self.ruta)
+  File "D:\Programming\UTN\Meto 2\tfi_metodologia_sistemas_ii\solicitudes\repositorio.py", line 42, in __init__
+    self._cargar()
+  File "D:\Programming\UTN\Meto 2\tfi_metodologia_sistemas_ii\solicitudes\repositorio.py", line 54, in _cargar
+    s = _desde_fila(fila)
+        ^^^^^^^^^^^^^^^^^
+  File "D:\Programming\UTN\Meto 2\tfi_metodologia_sistemas_ii\solicitudes\repositorio.py", line 78, in _desde_fila
+    responsable = Responsable(f["resp"], Area(f["area"])) if f.get("resp") and f.get("area") else None
+                                                             ^^^^^
+AttributeError: 'NoneType' object has no attribute 'get'
+
+======================================================================
+FAIL: test_json_invalido_informa_error_sin_sobrescribir (test_persistencia.TestPersistencia.test_json_invalido_informa_error_sin_sobrescribir) (contenido='{}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Programming\UTN\Meto 2\tfi_metodologia_sistemas_ii\tests\test_persistencia.py", line 52, in test_json_invalido_informa_error_sin_sobrescribir
+    with self.assertRaises(ErrorDePersistencia):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ErrorDePersistencia not raised
+
+----------------------------------------------------------------------
+Ran 21 tests in 0.059s
+
+FAILED (failures=1, errors=2)
