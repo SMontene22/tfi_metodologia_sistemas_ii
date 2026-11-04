@@ -13,7 +13,8 @@ tracer = trace.Trace(count=1, trace=0)
 def correr_pruebas():
     # La carga (import) de los modulos tambien debe ocurrir bajo el trazador.
     suite = unittest.defaultTestLoader.discover(os.path.join(RAIZ, "tests"))
-    return unittest.TextTestRunner(verbosity=0, stream=open(os.devnull, "w")).run(suite)
+    with open(os.devnull, "w") as salida:
+        return unittest.TextTestRunner(verbosity=0, stream=salida).run(suite)
 
 
 resultado = tracer.runfunc(correr_pruebas)
@@ -37,3 +38,4 @@ for nombre in sorted(os.listdir(carpeta)):
 print("-" * 52)
 print("%-30s %6d %6d %5.0f%%" % ("TOTAL", tot, cub, 100.0 * cub / max(1, tot)))
 print("Pruebas: %d ejecutadas, %d fallos, %d errores" % (resultado.testsRun, len(resultado.failures), len(resultado.errors)))
+sys.exit(0 if resultado.wasSuccessful() else 1)

@@ -1,5 +1,10 @@
 # Refactorings aplicados (antes / después)
 
+Este documento y sus métricas describen el cierre de la etapa 5. Las pruebas agregadas
+y la validación de carga realizadas después se registran en [la etapa 6](pruebas.md) y
+[el code review](code_review_checklist.md). Las evidencias históricas se conservan;
+las métricas actuales están en `evidencias/metricas_etapas_6_7.txt`.
+
 Técnica de trabajo: protección con una prueba de caracterización (golden master). Primero se capturó la salida de la versión inicial (docs/evidencias/salida_inicial.txt); luego se construyó la estructura nueva, se migró el escenario y se eliminó gestor.py. La salida del escenario refactorizado es idéntica a la inicial y la prueba automática termina en OK.
 
 ## R1 – Extract Method (sobre reg)
