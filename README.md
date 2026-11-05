@@ -29,9 +29,34 @@ Registrar solicitud · cambiar estado · asignar responsable · buscar/filtrar �
 Persistencia en `solicitudes.json`. Todos los datos son sintéticos.
 La demo agrega una solicitud cada vez que se ejecuta. Las pruebas usan archivos temporales.
 
+## Estructura
+```
+solicitudes/   catalogos.py  modelos.py  validacion.py  servicio.py  repositorio.py  reporte.py  reloj.py  errores.py  cli.py
+tests/         pruebas unitarias, de caracterización y de compatibilidad de datos
+tools/         metricas.py, cobertura.py (solo biblioteca estándar)
+docs/          diagnóstico, SOLID/Clean Code, refactorings, pruebas, code review, decisiones y evidencias
+escenario.py   guion determinista usado como golden master
+```
+## Tags del repositorio
+| Tag | Significado |
+|---|---|
+| `estado-inicial` | Sistema base con deuda técnica (`gestor.py`) |
+| `etapa-diagnostico` | Diagnóstico de calidad y 13 code smells |
+| `etapa-refactoring` | Refactorings aplicados; golden master idéntico |
+| `etapa-pruebas` | Pruebas unitarias, compatibilidad y cobertura |
+| `etapa-docs` | Code review y documentación final |
+
+
+Para comparar: `git diff estado-inicial estado-refactorizado --stat`.
+
+## Documentación
+Ver [`docs/`](docs/): `diagnostico_code_smells.md`, `solid_clean_code.md`, `refactorings.md`, `pruebas.md`,
+`code_review_checklist.md`, `decisiones_tecnicas.md`, `declaracion_ia.md` y `evidencias/`.
+
 ## Equipo
 | Integrante | Usuario GitHub |
 |---|---|
 | Sergio Montenegro | smontene22 |
 | Santiago Pace | santipace |
 | Pedro Sota | dibaxu |
+
